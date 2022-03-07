@@ -49,6 +49,7 @@ public class PlantInventoryController {
         plantRepository.save(plant);
     }
 
+
     @DeleteMapping("/plant/{id}")
     public void deletePlant(@PathVariable int id){
         plantRepository.deleteById(id);
