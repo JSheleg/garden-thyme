@@ -24,7 +24,6 @@ public class GrowZoneController {
 
     @GetMapping("/growZone")
     public List<GrowZone> getZoneById() {
-
         return growZoneRepository.findAll();
     }
 
