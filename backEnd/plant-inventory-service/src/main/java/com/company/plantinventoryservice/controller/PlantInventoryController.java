@@ -1,40 +1,57 @@
 package com.company.plantinventoryservice.controller;
 
-import org.springframework.cloud.context.config.annotation.RefreshScope;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import com.company.plantinventoryservice.dto.Plant;
+import com.company.plantinventoryservice.repository.PlantRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 @RestController
-@RefreshScope
+//@RefreshScope
 public class PlantInventoryController {
+    @Autowired
+    private PlantRepository plantRepository;
 
-    // something to hold our greetings
-    private List<String> greetingList = new ArrayList<>();
-    // so we can randomly return a greeting
-    private Random rndGenerator = new Random();
-
-    public PlantInventoryController() {
-
-        // some greetings
-        greetingList.add("HiYa!");
-        greetingList.add("Hello!!!");
-        greetingList.add("Howdy!");
-        greetingList.add("Greetings!");
-        greetingList.add("Hi!!!!!");
+    @PostMapping
+    public Plant createPlant(@RequestBody Plant plant){
+        plantRepository.save(plant);
+        return plant;
     }
 
-    @RequestMapping(value = "/greeting", method = RequestMethod.GET)
-    public String getRandomGreeting() {
-
-        // select and return a random greeting
-        int whichGreeting = rndGenerator.nextInt(5);
-        return greetingList.get(whichGreeting);
+    @GetMapping("/plant")
+    public List<Plant> getAllPlants(){
+        return plantRepository.findAll();
     }
 
+    @GetMapping("/plants/{id}")
+    public Plant getPlants(@PathVariable int id){
+        Optional<Plant> plant = plantRepository.findById(id);
+
+        if(!plant.isPresent()){
+            return null;
+        }
+        return plant.get();
+    }
+
+    @PutMapping("/plant/{id}")
+    public void updatePlant(@RequestBody Plant plant, @PathVariable int id){
+        if(plant.getId() == null){
+            plant.setId(id);
+        }
+        if(plant.getId()!=id){
+            throw new IllegalArgumentException("Plant Id must match parameter given");
+        }
+        plantRepository.save(plant);
+    }
+
+    @DeleteMapping("/plant/{id}")
+    public void deletePlant(@PathVariable int id){
+        plantRepository.deleteById(id);
+    }
 
 }
