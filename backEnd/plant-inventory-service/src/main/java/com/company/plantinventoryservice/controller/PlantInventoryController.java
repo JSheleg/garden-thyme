@@ -28,7 +28,7 @@ public class PlantInventoryController {
         greetingList.add("Hi!!!!!");
     }
 
-    @RequestMapping(value = "/greeting", method = RequestMethod.GET)
+    @RequestMapping(value = "/hello", method = RequestMethod.GET)
     public String getRandomGreeting() {
 
         // select and return a random greeting
