@@ -5,6 +5,7 @@ package com.company.growZoneservice.controller;
 import com.company.growZoneservice.dto.GrowZone;
 import com.company.growZoneservice.repository.GrowZoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,17 +18,19 @@ public class GrowZoneController {
     private GrowZoneRepository growZoneRepository;
 
     @PostMapping("/growZone")
+    @ResponseStatus(HttpStatus.CREATED)
     public GrowZone createZone(@RequestBody GrowZone zone){
-        growZoneRepository.save(zone);
-        return zone;
+        return growZoneRepository.save(zone);
     }
 
     @GetMapping("/growZone")
-    public List<GrowZone> getZoneById() {
+    @ResponseStatus(HttpStatus.OK)
+    public List<GrowZone> getAllZones() {
         return growZoneRepository.findAll();
     }
 
     @GetMapping("/growZone/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public GrowZone getGrowZoneById(@PathVariable Integer zoneId){
         Optional<GrowZone> zone = growZoneRepository.findById(zoneId);
 
@@ -35,12 +38,14 @@ public class GrowZoneController {
     }
 
     @PutMapping("/growZone/{id}")
-    public void updateZone(@RequestBody GrowZone zone, @PathVariable Integer id){
+    @ResponseStatus(HttpStatus.OK)
+    public void updateZone(@RequestBody GrowZone zone){
         growZoneRepository.save(zone);
     }
 
     @DeleteMapping("/growZone/{id}")
-    public void deleteZone(@RequestBody GrowZone zone, @PathVariable Integer id){
-        growZoneRepository.delete(zone);
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteZone(@PathVariable Integer zoneId){
+        growZoneRepository.deleteById(zoneId);
     }
 }
