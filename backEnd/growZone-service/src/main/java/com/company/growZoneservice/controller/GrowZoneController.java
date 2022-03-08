@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+
 public class GrowZoneController {
 
     @Autowired
@@ -29,7 +30,7 @@ public class GrowZoneController {
         return growZoneRepository.findAll();
     }
 
-    @GetMapping("/growZone/{id}")
+    @GetMapping("/growZone/{zoneId}")
     @ResponseStatus(HttpStatus.OK)
     public GrowZone getGrowZoneById(@PathVariable Integer zoneId){
         Optional<GrowZone> zone = growZoneRepository.findById(zoneId);
@@ -37,14 +38,14 @@ public class GrowZoneController {
         return zone.get();
     }
 
-    @PutMapping("/growZone/{id}")
-    @ResponseStatus(HttpStatus.OK)
-    public void updateZone(@RequestBody GrowZone zone){
+    @PutMapping("/growZone/{zoneId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void updateZone(@RequestBody GrowZone zone, @PathVariable Integer zoneId){
         growZoneRepository.save(zone);
     }
 
-    @DeleteMapping("/growZone/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @DeleteMapping("/growZone/{zoneId}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteZone(@PathVariable Integer zoneId){
         growZoneRepository.deleteById(zoneId);
     }
