@@ -1,6 +1,7 @@
 package com.company.plantinventoryservice.controller;
 
 import com.company.plantinventoryservice.dto.Plant;
+import com.company.plantinventoryservice.repository.NoteRepository;
 import com.company.plantinventoryservice.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.cloud.context.config.annotation.RefreshScope;
@@ -9,15 +10,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
+
 
 @RestController
 //@RefreshScope
 public class PlantInventoryController {
-    @Autowired
-    private PlantRepository plantRepository;
 
-    @PostMapping
+    @Autowired
+    PlantRepository plantRepository;
+    @Autowired
+    NoteRepository noteRepository;
+
+
+    @PostMapping("/plant")
     public Plant createPlant(@RequestBody Plant plant){
         plantRepository.save(plant);
         return plant;
@@ -28,12 +33,12 @@ public class PlantInventoryController {
         return plantRepository.findAll();
     }
 
-    @GetMapping("/plants/{id}")
+    @GetMapping("/plant/{id}")
     public Plant getPlants(@PathVariable int id){
         Optional<Plant> plant = plantRepository.findById(id);
 
         if(!plant.isPresent()){
-            return null;
+            throw new IllegalArgumentException("Plant doesn't exist");
         }
         return plant.get();
     }
