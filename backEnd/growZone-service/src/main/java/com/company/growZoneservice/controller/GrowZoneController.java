@@ -6,13 +6,13 @@ import com.company.growZoneservice.dto.GrowZone;
 import com.company.growZoneservice.repository.GrowZoneRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-
 public class GrowZoneController {
 
     @Autowired
@@ -48,5 +48,6 @@ public class GrowZoneController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteZone(@PathVariable Integer zoneId){
         growZoneRepository.deleteById(zoneId);
+
     }
 }

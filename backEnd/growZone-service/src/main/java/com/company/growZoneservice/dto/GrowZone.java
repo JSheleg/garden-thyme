@@ -2,7 +2,6 @@ package com.company.growZoneservice.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -17,6 +16,7 @@ public class GrowZone {
     //in Fahrenheit
     private Integer lowTemp;
     //in Fahrenheit
+
     private Integer highTemp;
 
     public GrowZone() {
