@@ -2,19 +2,21 @@ package com.company.growZoneservice.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name ="growZone")
+@Table(name ="grow_zone")
 public class GrowZone {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer zoneId;
+    //in Fahrenheit
     private Integer lowTemp;
+    //in Fahrenheit
+
     private Integer highTemp;
 
     public GrowZone() {
