@@ -13,12 +13,30 @@ const Home = () => {
     // const loggedIn = Auth.loggedIn()
   
   
-  
+    const [plants, setPlant] = useState([]);
+
+    const { id } = useParams()
+    useEffect(() => {
+      fetchFromAPI();
+    }, []);
+
+    function fetchFromAPI() {
+        fetch("http://localhost:8080/plant/")
+            .then(response => response.json())
+            .then(result => { console.log(JSON.stringify(result)); setPlant(result); })
+            .catch(console.log);
+    }
   
     return (
       <main>
           <div className='flex-row justify-space-between'>
             This is the home page
+
+            {plants.length === 0 ? <div className="alert alert-warning">No Plants</div>
+                : (<div className="row row-cols-3">
+                    {plants.map(p => <PlantCard key={p.id} plant={p} />)}
+                  </div>)
+            }
           </div>
 
       </main>
