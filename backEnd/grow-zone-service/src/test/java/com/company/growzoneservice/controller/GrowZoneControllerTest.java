@@ -1,7 +1,7 @@
-package com.company.growZoneservice.controller;
+package com.company.growzoneservice.controller;
 
-import com.company.growZoneservice.dto.GrowZone;
-import com.company.growZoneservice.repository.GrowZoneRepository;
+import com.company.growzoneservice.dto.GrowZone;
+import com.company.growzoneservice.repository.GrowZoneRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
@@ -68,7 +68,7 @@ public class GrowZoneControllerTest {
         String inputJson = mapper.writeValueAsString(inputZone1);
         String  outputJson = mapper.writeValueAsString(outputZone1);
 
-        mockMvc.perform(post("/growZone")
+        mockMvc.perform(post("/zone")
                 .content(inputJson)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
@@ -79,7 +79,7 @@ public class GrowZoneControllerTest {
     public void shouldGetCustomerById() throws Exception {
         String  outputJson = mapper.writeValueAsString(outputZone1);
 
-        mockMvc.perform(get("/growZone/5"))
+        mockMvc.perform(get("/zone/5"))
                 .andExpect(status().isOk())
                 .andExpect(content().json(outputJson));
     }
@@ -91,7 +91,7 @@ public class GrowZoneControllerTest {
 
         String inputJson = mapper.writeValueAsString(inputZone1);
 
-        mockMvc.perform(put("/growZone/5")
+        mockMvc.perform(put("/zone/5")
                 .content(inputJson)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNoContent());
@@ -100,7 +100,7 @@ public class GrowZoneControllerTest {
 
     @Test
     public void shouldRespondWith204WhenDeletingZone() throws Exception {
-        mockMvc.perform(delete("/growZone/5"))
+        mockMvc.perform(delete("/zone/5"))
                 .andExpect(status().isNoContent());
     }
 

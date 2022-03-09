@@ -1,4 +1,4 @@
-package com.company.growZoneservice.dto;
+package com.company.growzoneservice.dto;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
