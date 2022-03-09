@@ -20,6 +20,7 @@ import java.util.Set;
 //@RefreshScope
 public class PlantInventoryController {
 
+
     @Autowired
     PlantRepository plantRepository;
     @Autowired
@@ -28,6 +29,7 @@ public class PlantInventoryController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/plant")
     public Plant createPlant(@RequestBody @Valid Plant plant){
+
         plantRepository.save(plant);
         return plant;
     }
