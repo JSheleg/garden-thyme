@@ -6,8 +6,10 @@ import com.company.plantinventoryservice.repository.NoteRepository;
 import com.company.plantinventoryservice.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 //import org.springframework.cloud.context.config.annotation.RefreshScope;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -18,14 +20,16 @@ import java.util.Set;
 //@RefreshScope
 public class PlantInventoryController {
 
+
     @Autowired
     PlantRepository plantRepository;
     @Autowired
     NoteRepository noteRepository;
 
-
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/plant")
-    public Plant createPlant(@RequestBody Plant plant){
+    public Plant createPlant(@RequestBody @Valid Plant plant){
+
         plantRepository.save(plant);
         return plant;
     }
