@@ -3,6 +3,10 @@ package com.company.plantinventoryservice.dto;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -15,7 +19,9 @@ public class Note implements Serializable {
     @Column(name="note_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+//    @NotEmpty(message="You must supply a note body")
     private String content;
+//    @NotNull(message="Please select a plant id to tie the note too!")
     private Integer plantId;
 
     public Integer getId() {
