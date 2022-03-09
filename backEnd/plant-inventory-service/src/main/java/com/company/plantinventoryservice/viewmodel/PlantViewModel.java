@@ -1,50 +1,27 @@
-package com.company.plantinventoryservice.dto;
+package com.company.plantinventoryservice.viewmodel;
 
-import com.fasterxml.jackson.annotation.*;
+import com.company.plantinventoryservice.dto.Note;
 
-import javax.persistence.*;
-
-import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-@Entity
-@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-@Table(name="plant")
-public class Plant implements Serializable {
-
-    @Id
-    @Column(name = "plant_id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
+public class PlantViewModel {
+    private int id;
     private String nickname;
     private String plantName;
     private String scientificName;
     private String sunlightHours;
     private String waterFrequency;
     private Integer zoneId;
+    private List<Note> notes = new ArrayList<>();
 
-    @OneToMany(mappedBy = "plantId", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Note> notes;
-
-
-    public Plant(String nickname, String plantName, String scientificName, String sunlightHours, String waterFrequency, Integer zoneId) {
-        this.nickname = nickname;
-        this.plantName = plantName;
-        this.scientificName = scientificName;
-        this.sunlightHours = sunlightHours;
-        this.waterFrequency = waterFrequency;
-        this.zoneId = zoneId;
-    }
-
-    public Plant() {
-    }
-
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -96,11 +73,11 @@ public class Plant implements Serializable {
         this.zoneId = zoneId;
     }
 
-    public Set<Note> getNotes() {
+    public List<Note> getNotes() {
         return notes;
     }
 
-    public void setNotes(Set<Note> notes) {
+    public void setNotes(List<Note> notes) {
         this.notes = notes;
     }
 
@@ -108,8 +85,8 @@ public class Plant implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Plant plant = (Plant) o;
-        return Objects.equals(id, plant.id) && Objects.equals(nickname, plant.nickname) && Objects.equals(plantName, plant.plantName) && Objects.equals(scientificName, plant.scientificName) && Objects.equals(sunlightHours, plant.sunlightHours) && Objects.equals(waterFrequency, plant.waterFrequency) && Objects.equals(zoneId, plant.zoneId) && Objects.equals(notes, plant.notes);
+        PlantViewModel that = (PlantViewModel) o;
+        return id == that.id && Objects.equals(nickname, that.nickname) && Objects.equals(plantName, that.plantName) && Objects.equals(scientificName, that.scientificName) && Objects.equals(sunlightHours, that.sunlightHours) && Objects.equals(waterFrequency, that.waterFrequency) && Objects.equals(zoneId, that.zoneId) && Objects.equals(notes, that.notes);
     }
 
     @Override
@@ -119,7 +96,7 @@ public class Plant implements Serializable {
 
     @Override
     public String toString() {
-        return "Plant{" +
+        return "PlantViewModel{" +
                 "id=" + id +
                 ", nickname='" + nickname + '\'' +
                 ", plantName='" + plantName + '\'' +
