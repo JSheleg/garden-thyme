@@ -1,5 +1,6 @@
 package com.company.plantinventoryservice.controller;
 
+import com.company.plantinventoryservice.dto.Note;
 import com.company.plantinventoryservice.dto.Plant;
 import com.company.plantinventoryservice.repository.NoteRepository;
 import com.company.plantinventoryservice.repository.PlantRepository;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 
 @RestController
@@ -53,7 +55,6 @@ public class PlantInventoryController {
         }
         plantRepository.save(plant);
     }
-
 
     @DeleteMapping("/plant/{id}")
     public void deletePlant(@PathVariable int id){
