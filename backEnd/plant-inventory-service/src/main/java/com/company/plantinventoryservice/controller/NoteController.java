@@ -6,6 +6,8 @@ import com.company.plantinventoryservice.repository.PlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class NoteController {
 
@@ -16,7 +18,7 @@ public class NoteController {
     NoteRepository noteRepository;
 
     @PostMapping("/note")
-    public void addNote(@RequestBody Note note){
+    public void addNote(@RequestBody @Valid Note note){
         noteRepository.save(note);
     }
 
