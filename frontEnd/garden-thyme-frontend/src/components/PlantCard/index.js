@@ -1,9 +1,15 @@
+
+
 function PlantCard({ p }) {
 
     function handleDelete() {
         fetch(`http://localhost:8080/plant/${p.id}`, { method: "DELETE" })
-            .then(() => notify({ action: "delete", plant: plant }))
-            .catch(error => notify({ action: "delete", error: error }));
+            .then(() => { console.log("plant has been deleted")
+            setTimeout(() => {console.log("this is the third message")
+                                window.location.reload();
+        }, 1000);
+        })
+            .catch(error => {console.log(error)});
     }
 
     return (
@@ -27,4 +33,4 @@ function PlantCard({ p }) {
     );
 }
 
-export default RecipeCard;
+export default PlantCard;
