@@ -4,9 +4,13 @@ import com.company.plantinventoryservice.dto.Note;
 import com.company.plantinventoryservice.dto.Plant;
 import com.company.plantinventoryservice.repository.NoteRepository;
 import com.company.plantinventoryservice.repository.PlantRepository;
+import com.company.plantinventoryservice.util.feign.GrowZoneClient;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.cloud.context.config.annotation.RefreshScope;
+
+import org.springframework.cloud.context.config.annotation.RefreshScope;
+
 import org.springframework.http.HttpStatus;
+
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,7 +21,7 @@ import java.util.Set;
 
 
 @RestController
-//@RefreshScope
+@RefreshScope
 public class PlantInventoryController {
 
 
@@ -25,6 +29,12 @@ public class PlantInventoryController {
     PlantRepository plantRepository;
     @Autowired
     NoteRepository noteRepository;
+    @Autowired
+    private final GrowZoneClient client;
+
+    PlantInventoryController(GrowZoneClient client){
+        this.client = client;
+    }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/plant")
@@ -37,6 +47,11 @@ public class PlantInventoryController {
     @GetMapping("/plant")
     public List<Plant> getAllPlants(){
         return plantRepository.findAll();
+    }
+
+    @GetMapping("/zone")
+    public String getAllZones() {
+        return client.getAllZones();
     }
 
     @GetMapping("/plant/{id}")

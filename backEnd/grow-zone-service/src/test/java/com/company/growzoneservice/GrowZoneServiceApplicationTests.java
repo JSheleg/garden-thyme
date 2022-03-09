@@ -1,4 +1,4 @@
-package com.company.growZoneservice;
+package com.company.growzoneservice;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;

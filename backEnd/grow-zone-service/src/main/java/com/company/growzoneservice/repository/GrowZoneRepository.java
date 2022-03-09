@@ -1,7 +1,7 @@
-package com.company.growZoneservice.repository;
+package com.company.growzoneservice.repository;
 
 
-import com.company.growZoneservice.dto.GrowZone;
+import com.company.growzoneservice.dto.GrowZone;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
