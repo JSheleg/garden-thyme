@@ -13,6 +13,7 @@ function PlantForm() {
     function handleSubmit(evt) {
         evt.preventDefault();
 
+
         console.log(plant)
         const url = `http://localhost:8082/plant`;
         const method = "POST"
@@ -22,9 +23,8 @@ function PlantForm() {
             method,
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json",
-                // "Access-Control-Allow-Origin": "http://localhost:8082",
-                // "Access-Control-Allow-Methods": "GET, OPTIONS, POST, PUT"
+
+                "Accept": "application/json"
 
             },
             body: JSON.stringify(plant)
@@ -38,11 +38,13 @@ function PlantForm() {
                 }
                 return Promise.reject(`Didn't receive expected status: ${expectedStatus}`);
             })
+
             .then(result => {
                 console.log(result)
                 window.location.href = "/"
             })
             .catch(error => {console.log(error); console.log(plant)});
+
     }
 
     return (
@@ -50,6 +52,7 @@ function PlantForm() {
             <h1>Create Plant</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
+
                     <label htmlFor="plantName">Name</label>
                     <input type="text" id="plantName" name="plantName"
                         className="form-control"
@@ -110,12 +113,7 @@ function PlantForm() {
                         <option value="12">12</option>
                     </select>
                 </div>
-                {/* <div className="mb-3">
-                    <label htmlFor="description">Description</label>
-                </div>
-                <div className="mb-3">
-                    <textarea name="description" cols="40" rows="5" value={plant.description} onChange={handleChange}/>
-                </div> */}
+                
                 <div className="mb-3">
                     <button className="btn btn-primary mr-3" type="submit">Create</button>
                     <button className="btn btn-secondary" type="button" onClick={() => window.location.href = "/"}>Cancel</button>

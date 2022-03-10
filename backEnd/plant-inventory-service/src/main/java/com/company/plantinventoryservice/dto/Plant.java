@@ -1,18 +1,21 @@
 package com.company.plantinventoryservice.dto;
 
 import com.fasterxml.jackson.annotation.*;
+
 import javax.validation.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import java.io.Serializable;
+
 import java.util.Objects;
 import java.util.Set;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="plant")
+
 public class Plant implements Serializable {
 
     @Id

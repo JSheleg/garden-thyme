@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from 'react';
 import PlantCard from '../components/PlantCard'
 
+
 const Home = () => {
 
     // // use useQuery hook to make query request
@@ -16,6 +17,7 @@ const Home = () => {
     // const loggedIn = Auth.loggedIn()
   
   
+
     const [plants, setPlant] = useState([]);
 
     const { id } = useParams()
@@ -29,6 +31,7 @@ const Home = () => {
             .then(result => { JSON.stringify(result); console.log(result); setPlant(result); })
             .catch(console.log);
     }
+
   
     return (
       <main>
@@ -40,6 +43,7 @@ const Home = () => {
                     {plants.map(p => <PlantCard key={p.id} plant={p} />)}
                   </div>)
             }
+
           </div>
 
       </main>

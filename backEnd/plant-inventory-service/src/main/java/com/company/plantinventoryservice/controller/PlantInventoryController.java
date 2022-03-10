@@ -1,5 +1,6 @@
 package com.company.plantinventoryservice.controller;
 
+
 import com.company.plantinventoryservice.dto.Note;
 import com.company.plantinventoryservice.dto.Plant;
 import com.company.plantinventoryservice.repository.NoteRepository;
@@ -8,6 +9,7 @@ import com.company.plantinventoryservice.util.feign.GrowZoneClient;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.cloud.context.config.annotation.RefreshScope;
+
 
 import org.springframework.http.HttpStatus;
 
@@ -23,6 +25,9 @@ import java.util.Set;
 @RestController
 @CrossOrigin
 public class PlantInventoryController {
+    @Autowired
+    private PlantRepository plantRepository;
+
 
     @Autowired
     PlantRepository plantRepository;
