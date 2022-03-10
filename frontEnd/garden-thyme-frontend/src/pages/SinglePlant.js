@@ -48,17 +48,17 @@ const SinglePlant = () => {
           .catch(error => {console.log(error);console.log(note)});
   }
 
-    const decoyPlant = {
-      plantName: "Carl",
-      nickname: "Carlina",
-      scientificName: "Carlursa Carlonia",
-      sunlightHours: "Full Sun",
-      waterFrequency: "once per week",
-      zoneId: "3",
-      notes: [
-        {id:1,text:"hello this is note 1"},
-        {id:2,text:"hello this is note 2"}]
-    }
+    // const decoyPlant = {
+    //   plantName: "Carl",
+    //   nickname: "Carlina",
+    //   scientificName: "Carlursa Carlonia",
+    //   sunlightHours: "Full Sun",
+    //   waterFrequency: "once per week",
+    //   zoneId: "3",
+    //   notes: [
+    //     {id:1,text:"hello this is note 1"},
+    //     {id:2,text:"hello this is note 2"}]
+    // }
 
     
     useEffect(() => {
@@ -68,10 +68,10 @@ const SinglePlant = () => {
     function fetchFromAPI() {
         fetch("http://localhost:8080/plant/" + id )
             .then(response => response.json())
-            .then(result => { console.log(JSON.stringify(result)); setPlant(decoyPlant); })
-            .catch(error => {console.log(error)
-            setPlant(decoyPlant)});
-              // {plantName: "Plant not found"}
+            .then(result => { JSON.stringify(result); setPlant(result); })
+            .catch(error => {console.log(error);setPlant({plantName: "Plant not found"})})
+            // setPlant(decoyPlant)});
+             
               
     }
 
