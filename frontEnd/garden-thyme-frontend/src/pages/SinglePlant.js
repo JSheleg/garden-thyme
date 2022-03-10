@@ -8,7 +8,14 @@ const SinglePlant = () => {
     const { id } = useParams()
     const [plant, setPlant] = useState({});
     const [note, setNote] = useState({plantId: id});
+    const [zone, setZone] = useState([])
 
+    function getZones() {
+      fetch("http://localhost:8082/zone/")
+      .then(response => response.json())
+      .then(result => { JSON.stringify(result); console.log(result); setZone(result); })
+      .catch(error => {console.log(error)})
+    }
 
     function handleChange(evt) {
       const clone = { ...note };
@@ -19,8 +26,8 @@ const SinglePlant = () => {
     function handleSubmit(evt) {
       evt.preventDefault();
 
-      console.log(plant)
-      const url = `http://localhost:8080/note`;
+      console.log(note)
+      const url = `http://localhost:8082/note`;
       const method = "POST"
       const expectedStatus = 201;
 
@@ -30,12 +37,12 @@ const SinglePlant = () => {
               "Content-Type": "application/json",
               "Accept": "application/json"
           },
-          body: JSON.stringify(plant)
+          body: JSON.stringify(note)
       };
 
       fetch(url, init)
           .then(response => {
-
+              console.log(init)
               if (response.status === expectedStatus) {
                  return response.json
               }
@@ -43,32 +50,23 @@ const SinglePlant = () => {
           })
           .then(result => {
               console.log(result)
-              window.location.href = "/plant/" + id
+              setTimeout(()=>{window.location.href = "/plant/" + id},1000)
+
           })
           .catch(error => {console.log(error);console.log(note)});
   }
 
-    // const decoyPlant = {
-    //   plantName: "Carl",
-    //   nickname: "Carlina",
-    //   scientificName: "Carlursa Carlonia",
-    //   sunlightHours: "Full Sun",
-    //   waterFrequency: "once per week",
-    //   zoneId: "3",
-    //   notes: [
-    //     {id:1,text:"hello this is note 1"},
-    //     {id:2,text:"hello this is note 2"}]
-    // }
 
     
     useEffect(() => {
       fetchFromAPI();
+      getZones();
     }, []);
 
     function fetchFromAPI() {
-        fetch("http://localhost:8080/plant/" + id )
+        fetch("http://localhost:8082/plant/" + id )
             .then(response => response.json())
-            .then(result => { JSON.stringify(result); setPlant(result); })
+            .then(result => { JSON.stringify(result); console.log(result); setPlant(result); })
             .catch(error => {console.log(error);setPlant({plantName: "Plant not found"})})
             // setPlant(decoyPlant)});
              
@@ -89,10 +87,17 @@ const SinglePlant = () => {
               <h5>Sunlight: {plant.sunlightHours}</h5>
               <h5>Water: {plant.waterFrequency}</h5>
               <h5>Zone: {plant.zoneId}</h5>
+              <div className="row row-cols-3">
+                    {zone ? <div>{
+                      zone.map(z => <div>Zone Id: {z.zoneId}, {z.lowTemp}°F - {z.highTemp}°F</div>)
+                    }</div> :
+                    <div>loading</div>
+                    }
+              </div>
               <h5>Notes: </h5>
               <div className="row row-cols-3">
                     {plant.notes ? <div>{
-                      plant.notes.map(n => <Note key={n.id} text = {n.text}/>)
+                      plant.notes.map(n => <Note key={n.id} note = {n}/>)
                     }</div> :
                     <div>loading</div>
                     }
@@ -102,7 +107,7 @@ const SinglePlant = () => {
                     <label htmlFor="note">Add Note:</label>
                 </div>
                 <div className="mb-3">
-                    <textarea name="text" cols="40" rows="5" value={note.text} onChange={handleChange}/>
+                    <textarea name="content" cols="40" rows="5" value={note.content} onChange={handleChange}/>
                 </div>
                 <div className="mb-3">
                     <button className="btn btn-primary mr-3" type="submit">Save Note</button>

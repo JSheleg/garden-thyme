@@ -14,7 +14,7 @@ function PlantForm() {
         evt.preventDefault();
 
         console.log(plant)
-        const url = `http://localhost:8080/plant`;
+        const url = `http://localhost:8082/plant`;
         const method = "POST"
         const expectedStatus = 201;
 
@@ -22,7 +22,10 @@ function PlantForm() {
             method,
             headers: {
                 "Content-Type": "application/json",
-                "Accept": "application/json"
+                "Accept": "application/json",
+                // "Access-Control-Allow-Origin": "http://localhost:8082",
+                // "Access-Control-Allow-Methods": "GET, OPTIONS, POST, PUT"
+
             },
             body: JSON.stringify(plant)
         };
@@ -39,7 +42,7 @@ function PlantForm() {
                 console.log(result)
                 window.location.href = "/"
             })
-            .catch(error => console.log(error));
+            .catch(error => {console.log(error); console.log(plant)});
     }
 
     return (
@@ -47,8 +50,8 @@ function PlantForm() {
             <h1>Create Plant</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="name">Name</label>
-                    <input type="text" id="name" name="name"
+                    <label htmlFor="plantName">Name</label>
+                    <input type="text" id="plantName" name="plantName"
                         className="form-control"
                         value={plant.plantName} onChange={handleChange} />
                 </div>
@@ -63,15 +66,15 @@ function PlantForm() {
 
 
                 <div className="mb-3">
-                    <label htmlFor="scientific-name">Scientific Name</label>
-                    <input type="text" id="scientific-name" name="scientific-name"
+                    <label htmlFor="scientificName">Scientific Name</label>
+                    <input type="text" id="scientificName" name="scientificName"
                         className="form-control"
                         value={plant.scientificName} onChange={handleChange} />
                 </div>
 
                 <div className="mb-3">
-                    <label htmlFor="sunlight">Sunlight </label>
-                    <select name="sunlight" value={plant.sunlightHours} onChange={handleChange}>
+                    <label htmlFor="sunlightHours">Sunlight </label>
+                    <select name="sunlightHours" value={plant.sunlightHours} onChange={handleChange}>
                         <option value="" disabled selected>Select your option</option>
                         <option value="Full Sun">Full Sun</option>
                         <option value="Part Sun">Part Sun</option>
@@ -90,8 +93,8 @@ function PlantForm() {
                     </select>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="zone">Zone </label>
-                    <select name="zone" value={plant.zoneId} onChange={handleChange}>
+                    <label htmlFor="zoneId">Zone </label>
+                    <select name="zoneId" value={plant.zoneId} onChange={handleChange}>
                         <option value="" disabled selected>Select your option</option>
                         <option value="1">1</option>
                         <option value="2">2</option>

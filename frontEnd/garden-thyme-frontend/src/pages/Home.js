@@ -24,9 +24,9 @@ const Home = () => {
     }, []);
 
     function fetchFromAPI() {
-        fetch("http://localhost:8080/plant/")
+        fetch("http://localhost:8082/plant/")
             .then(response => response.json())
-            .then(result => { console.log(JSON.stringify(result)); setPlant(result); })
+            .then(result => { JSON.stringify(result); console.log(result); setPlant(result); })
             .catch(console.log);
     }
   
