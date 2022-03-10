@@ -50,7 +50,7 @@ public class PlantInventoryControllerTest {
 
     Plant inputOrange;
     Plant outputOrange;
-//    Plant inputOak;
+    Plant inputOak;
     Plant outputOak;
 
     @Before
@@ -58,14 +58,13 @@ public class PlantInventoryControllerTest {
         inputOrange = new Plant("Val", "Valencia Orange", "SomeFancyName", "Full Sun", "2/month", 12);
         outputOrange = new Plant("Val", "Valencia Orange", "SomeFancyName", "Full Sun", "2/month", 12);
         outputOrange.setId(1);
-//        inputOak = new Plant("Carl", "Oak Tree", "some old name", "Full Sun", "2/month", 12);
+       inputOak = new Plant("Carl", "Oak Tree", "some old name", "Full Sun", "2/month", 12);
         outputOak = new Plant("Carl", "Oak Tree", "some old name", "Full Sun", "2/month", 12);
         outputOak.setId(2);
 
         doReturn(outputOrange).when(plantRepository).save(inputOrange);
         doReturn(Optional.of(outputOrange)).when(plantRepository).findById(1);
-//        doReturn(outputOak).when(plantRepository).save(inputOak);
-//        doReturn(Optional.of(outputOak)).when(plantRepository).findById(2);
+       doReturn(Optional.of(outputOak)).when(plantRepository).findById(2);
     }
 
     @Test

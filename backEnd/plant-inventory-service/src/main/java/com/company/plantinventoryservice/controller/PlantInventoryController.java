@@ -21,7 +21,6 @@ import java.util.Set;
 
 
 @RestController
-//@RefreshScope
 public class PlantInventoryController {
 
     @Autowired
