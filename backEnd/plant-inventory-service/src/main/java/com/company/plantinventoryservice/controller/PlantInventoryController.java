@@ -40,20 +40,22 @@ public class PlantInventoryController {
     @ResponseStatus(HttpStatus.CREATED)
     public Plant createPlant(@RequestBody @Valid Plant plant){
        return plantRepository.save(plant);
-
     }
 
     @GetMapping("/plant")
+    @ResponseStatus(HttpStatus.OK)
     public List<Plant> getAllPlants(){
         return plantRepository.findAll();
     }
 
     @GetMapping("/zone")
+    @ResponseStatus(HttpStatus.OK)
     public String getAllZones() {
         return client.getAllZones();
     }
 
     @GetMapping("/plant/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Plant getPlants(@PathVariable int id){
         Optional<Plant> plant = plantRepository.findById(id);
 

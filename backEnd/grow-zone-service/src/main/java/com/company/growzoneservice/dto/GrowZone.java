@@ -16,7 +16,6 @@ public class GrowZone {
     //in Fahrenheit
     private Integer lowTemp;
     //in Fahrenheit
-
     private Integer highTemp;
 
     public GrowZone() {
