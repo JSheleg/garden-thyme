@@ -13,6 +13,7 @@ function PlantForm() {
     function handleSubmit(evt) {
         evt.preventDefault();
 
+
         console.log(plant)
         const url = `http://localhost:8082/plant`;
         const method = "POST"
@@ -110,12 +111,14 @@ function PlantForm() {
                         <option value="12">12</option>
                     </select>
                 </div>
+
                 {/* <div className="mb-3">
                     <label htmlFor="description">Description</label>
                 </div>
                 <div className="mb-3">
                     <textarea name="description" cols="40" rows="5" value={plant.description} onChange={handleChange}/>
                 </div> */}
+
                 <div className="mb-3">
                     <button className="btn btn-primary mr-3" type="submit">Create</button>
                     <button className="btn btn-secondary" type="button" onClick={() => window.location.href = "/"}>Cancel</button>

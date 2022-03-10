@@ -11,6 +11,4 @@ public interface PlantRepository  extends JpaRepository <Plant, Integer> {
     //find by sunlight hours
     //add note to plantid
 
-
-
 }

@@ -40,6 +40,7 @@ const Home = () => {
                     {plants.map(p => <PlantCard key={p.id} plant={p} />)}
                   </div>)
             }
+
           </div>
 
       </main>
