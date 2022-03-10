@@ -2,7 +2,12 @@ package com.company.plantinventoryservice.dto;
 
 import com.fasterxml.jackson.annotation.*;
 
+import javax.validation.constraints.NotEmpty;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
+import java.io.Serializable;
 
 import java.util.Objects;
 import java.util.Set;
@@ -10,15 +15,21 @@ import java.util.Set;
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name="plant")
-public class Plant {
+
+public class Plant implements Serializable {
 
     @Id
-    @GeneratedValue(strategy =GenerationType.AUTO)
+    @Column(name = "plant_id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
+    @NotEmpty(message="You must supply a nickname")
     private String nickname;
+    @NotEmpty(message="You must supply a plantName")
     private String plantName;
     private String scientificName;
+    @NotEmpty(message="You must supply sunlightHours")
     private String sunlightHours;
+    @NotEmpty(message="You must supply waterFrequency")
     private String waterFrequency;
     private Integer zoneId;
 

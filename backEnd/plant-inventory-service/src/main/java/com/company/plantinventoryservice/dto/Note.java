@@ -1,16 +1,20 @@
 package com.company.plantinventoryservice.dto;
-
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "note")
-public class Note {
+
+public class Note implements Serializable {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name="note_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String content;
     private Integer plantId;

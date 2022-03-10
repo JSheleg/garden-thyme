@@ -7,6 +7,8 @@ import NoMatch from './pages/NoMatch'
 import SinglePlant from './pages/SinglePlant';
 import CreatePlant from './pages/CreatePlant'
 import Home from './pages/Home'
+// import EditPlant from './pages/EditPlant'
+
 
 function App() {
   return (
@@ -19,6 +21,7 @@ function App() {
               <Route path='/' element={<Home/>} />
               <Route path="/createPlant" element={<CreatePlant/>} />
               <Route path="/plant/:id" element={<SinglePlant/>} />
+              {/* <Route path="/editPlant/:id" element={<EditPlant/ >}/> */}
             </Routes>
 
           </div>

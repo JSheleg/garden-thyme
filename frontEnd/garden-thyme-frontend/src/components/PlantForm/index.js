@@ -13,7 +13,9 @@ function PlantForm() {
     function handleSubmit(evt) {
         evt.preventDefault();
 
-        const url = `http://localhost:8080/plants`;
+
+        console.log(plant)
+        const url = `http://localhost:8082/plant`;
         const method = "POST"
         const expectedStatus = 201;
 
@@ -21,7 +23,9 @@ function PlantForm() {
             method,
             headers: {
                 "Content-Type": "application/json",
+
                 "Accept": "application/json"
+
             },
             body: JSON.stringify(plant)
         };
@@ -34,8 +38,13 @@ function PlantForm() {
                 }
                 return Promise.reject(`Didn't receive expected status: ${expectedStatus}`);
             })
-            .then(result => console.log(result))
-            .catch(error => console.log(error));
+
+            .then(result => {
+                console.log(result)
+                window.location.href = "/"
+            })
+            .catch(error => {console.log(error); console.log(plant)});
+
     }
 
     return (
@@ -43,43 +52,68 @@ function PlantForm() {
             <h1>Create Plant</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
-                    <label htmlFor="title">Title</label>
-                    <input type="text" id="title" name="title"
+
+                    <label htmlFor="plantName">Name</label>
+                    <input type="text" id="plantName" name="plantName"
                         className="form-control"
-                        value={plant.title} onChange={handleChange} />
+                        value={plant.plantName} onChange={handleChange} />
                 </div>
+
+
                 <div className="mb-3">
-                    <label htmlFor="servings">Servings</label>
-                    <input type="text" id="servings" name="servings"
+                    <label htmlFor="nickname">Nickname</label>
+                    <input type="text" id="nickname" name="nickname"
                         className="form-control"
-                        value={plant.servings} onChange={handleChange} />
+                        value={plant.nickname} onChange={handleChange} />
                 </div>
+
+
                 <div className="mb-3">
-                    <label htmlFor="prepTime">Prep Time</label>
-                    <input type="text" id="prepTime" name="prepTime"
+                    <label htmlFor="scientificName">Scientific Name</label>
+                    <input type="text" id="scientificName" name="scientificName"
                         className="form-control"
-                        value={plant.prepTime} onChange={handleChange} />
+                        value={plant.scientificName} onChange={handleChange} />
                 </div>
+
                 <div className="mb-3">
-                    <label htmlFor="cookTime">Cook Time</label>
-                    <input type="text" id="cookTime" name="cookTime"
-                        className="form-control"
-                        value={plant.cookTime} onChange={handleChange} />
-                </div>
-                <div className="mb-3">
-                    <label htmlFor="category">Category</label>
-                    <select name="category" value={plant.category} onChange={handleChange}>
-                        <option value="Carnivore">Carnivore</option>
-                        <option value="Herbivore">Herbivore</option>
-                        <option value="Omnivore">Omnivore</option>
+                    <label htmlFor="sunlightHours">Sunlight </label>
+                    <select name="sunlightHours" value={plant.sunlightHours} onChange={handleChange}>
+                        <option value="" disabled selected>Select your option</option>
+                        <option value="Full Sun">Full Sun</option>
+                        <option value="Part Sun">Part Sun</option>
+                        <option value="Part Shade">Part Shade</option>
+                        <option value="Full Shade">Full Shade</option>
                     </select>
                 </div>
                 <div className="mb-3">
-                    <label htmlFor="description">Description</label>
+                    <label htmlFor="waterFrequency">Water Frequency </label>
+                    <select name="waterFrequency" value={plant.waterFrequency} onChange={handleChange}>
+                    <option value="" disabled selected>Select your option</option>
+                        <option value="3 Times Per Week">3 Times Per Week</option>
+                        <option value="1 Times Per Week">1 Times Per Week</option>
+                        <option value="1 Time Per 2 Weeks">1 Time Per 2 Weeks</option>
+                        <option value="1 Timer Per Month">1 Timer Per Month</option>
+                    </select>
                 </div>
                 <div className="mb-3">
-                    <textarea name="description" cols="40" rows="5" value={plant.description} onChange={handleChange}/>
+                    <label htmlFor="zoneId">Zone </label>
+                    <select name="zoneId" value={plant.zoneId} onChange={handleChange}>
+                        <option value="" disabled selected>Select your option</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
                 </div>
+                
                 <div className="mb-3">
                     <button className="btn btn-primary mr-3" type="submit">Create</button>
                     <button className="btn btn-secondary" type="button" onClick={() => window.location.href = "/"}>Cancel</button>
