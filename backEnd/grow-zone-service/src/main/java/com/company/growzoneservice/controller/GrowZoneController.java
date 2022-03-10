@@ -14,7 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RefreshScope
+//@RefreshScope
 public class GrowZoneController {
 
     @Autowired

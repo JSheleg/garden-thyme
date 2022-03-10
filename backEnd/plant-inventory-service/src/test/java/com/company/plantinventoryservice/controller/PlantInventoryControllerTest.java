@@ -3,13 +3,18 @@ package com.company.plantinventoryservice.controller;
 import com.company.plantinventoryservice.dto.Plant;
 import com.company.plantinventoryservice.repository.NoteRepository;
 import com.company.plantinventoryservice.repository.PlantRepository;
+import com.company.plantinventoryservice.util.feign.GrowZoneClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+
+import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -29,7 +34,7 @@ import static org.junit.Assert.*;
 public class PlantInventoryControllerTest {
 
     @Autowired
-    private MockMvc mockMvc;
+    MockMvc mockMvc;
 
     @MockBean
     PlantRepository plantRepository;
@@ -37,11 +42,15 @@ public class PlantInventoryControllerTest {
     @MockBean
     NoteRepository noteRepository;
 
+    @MockBean
+    GrowZoneClient client;
+
+
     private ObjectMapper mapper = new ObjectMapper();
 
     Plant inputOrange;
     Plant outputOrange;
-    Plant inputOak;
+//    Plant inputOak;
     Plant outputOak;
 
     @Before
@@ -49,18 +58,18 @@ public class PlantInventoryControllerTest {
         inputOrange = new Plant("Val", "Valencia Orange", "SomeFancyName", "Full Sun", "2/month", 12);
         outputOrange = new Plant("Val", "Valencia Orange", "SomeFancyName", "Full Sun", "2/month", 12);
         outputOrange.setId(1);
-        inputOak = new Plant("Carl", "Oak Tree", "some old name", "Full Sun", "2/month", 12);
+//        inputOak = new Plant("Carl", "Oak Tree", "some old name", "Full Sun", "2/month", 12);
         outputOak = new Plant("Carl", "Oak Tree", "some old name", "Full Sun", "2/month", 12);
         outputOak.setId(2);
 
         doReturn(outputOrange).when(plantRepository).save(inputOrange);
         doReturn(Optional.of(outputOrange)).when(plantRepository).findById(1);
-        doReturn(outputOak).when(plantRepository).save(outputOak);
-        doReturn(Optional.of(outputOak)).when(plantRepository).findById(2);
+//        doReturn(outputOak).when(plantRepository).save(inputOak);
+//        doReturn(Optional.of(outputOak)).when(plantRepository).findById(2);
     }
 
     @Test
-    public void shouldAddPlantOnPostRequest() throws Exception{
+    public void shouldAddPlantOnPostRequest() throws Exception {
         String inputJson = mapper.writeValueAsString(inputOrange);
         String outputJson = mapper.writeValueAsString(outputOrange);
 
@@ -81,8 +90,27 @@ public class PlantInventoryControllerTest {
 
     }
 
+    @Test
+    public void shouldRespondWith204WhenUpdatingCustomer()  throws Exception {
+        inputOrange.setId(1);
+        inputOrange.setNickname("charlette");
 
-//    @Test
+        String inputJson = mapper.writeValueAsString(inputOrange);
+
+        mockMvc.perform(put("/plant/1")
+                .content(inputJson)
+                .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isNoContent());
+    }
+
+    @Test
+    public void shouldRespondWith204WhenDeletingCustomer() throws Exception {
+        mockMvc.perform(delete("/plant/1"))
+                .andExpect(status().isNoContent());
+
+    }
+
+    //    @Test
 //    public void shouldReturn422StatusCodeWithInvalidRequestBody() throws Exception{
 //        Plant inputPlant = new Plant();
 //        inputPlant.setPlantName("Valencia Orange");

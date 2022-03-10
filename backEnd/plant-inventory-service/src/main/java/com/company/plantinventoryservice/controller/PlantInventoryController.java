@@ -21,14 +21,15 @@ import java.util.Set;
 
 
 @RestController
-@RefreshScope
+//@RefreshScope
 public class PlantInventoryController {
-
 
     @Autowired
     PlantRepository plantRepository;
+
     @Autowired
     NoteRepository noteRepository;
+
     @Autowired
     private final GrowZoneClient client;
 
@@ -36,12 +37,11 @@ public class PlantInventoryController {
         this.client = client;
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/plant")
+    @ResponseStatus(HttpStatus.CREATED)
     public Plant createPlant(@RequestBody @Valid Plant plant){
+       return plantRepository.save(plant);
 
-        plantRepository.save(plant);
-        return plant;
     }
 
     @GetMapping("/plant")
@@ -65,6 +65,7 @@ public class PlantInventoryController {
     }
 
     @PutMapping("/plant/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updatePlant(@RequestBody Plant plant, @PathVariable int id){
         if(plant.getId() == null){
             plant.setId(id);
@@ -76,6 +77,7 @@ public class PlantInventoryController {
     }
 
     @DeleteMapping("/plant/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePlant(@PathVariable int id){
         plantRepository.deleteById(id);
     }
