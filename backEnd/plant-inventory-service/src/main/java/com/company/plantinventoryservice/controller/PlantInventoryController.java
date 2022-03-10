@@ -21,14 +21,14 @@ import java.util.Set;
 
 
 @RestController
-@RefreshScope
 public class PlantInventoryController {
-
 
     @Autowired
     PlantRepository plantRepository;
+
     @Autowired
     NoteRepository noteRepository;
+
     @Autowired
     private final GrowZoneClient client;
 
@@ -36,25 +36,26 @@ public class PlantInventoryController {
         this.client = client;
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/plant")
+    @ResponseStatus(HttpStatus.CREATED)
     public Plant createPlant(@RequestBody @Valid Plant plant){
-
-        plantRepository.save(plant);
-        return plant;
+       return plantRepository.save(plant);
     }
 
     @GetMapping("/plant")
+    @ResponseStatus(HttpStatus.OK)
     public List<Plant> getAllPlants(){
         return plantRepository.findAll();
     }
 
     @GetMapping("/zone")
+    @ResponseStatus(HttpStatus.OK)
     public String getAllZones() {
         return client.getAllZones();
     }
 
     @GetMapping("/plant/{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Plant getPlants(@PathVariable int id){
         Optional<Plant> plant = plantRepository.findById(id);
 
@@ -65,6 +66,7 @@ public class PlantInventoryController {
     }
 
     @PutMapping("/plant/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void updatePlant(@RequestBody Plant plant, @PathVariable int id){
         if(plant.getId() == null){
             plant.setId(id);
@@ -76,6 +78,7 @@ public class PlantInventoryController {
     }
 
     @DeleteMapping("/plant/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePlant(@PathVariable int id){
         plantRepository.deleteById(id);
     }

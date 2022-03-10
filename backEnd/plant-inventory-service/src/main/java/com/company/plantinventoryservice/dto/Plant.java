@@ -17,7 +17,7 @@ public class Plant implements Serializable {
 
     @Id
     @Column(name = "plant_id")
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
     @NotEmpty(message="You must supply a nickname")
     private String nickname;

@@ -12,9 +12,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import javax.validation.Valid;
 
 @RestController
-@RefreshScope
+//@RefreshScope
 public class GrowZoneController {
 
     @Autowired
@@ -22,7 +23,7 @@ public class GrowZoneController {
 
     @PostMapping("/zone")
     @ResponseStatus(HttpStatus.CREATED)
-    public GrowZone createZone(@RequestBody GrowZone zone){
+    public GrowZone createZone(@RequestBody @Valid GrowZone zone){
         return growZoneRepository.save(zone);
     }
 
@@ -34,7 +35,7 @@ public class GrowZoneController {
 
     @GetMapping("/zone/{zoneId}")
     @ResponseStatus(HttpStatus.OK)
-    public GrowZone getGrowZoneById(@PathVariable Integer zoneId){
+    public GrowZone getGrowZoneById(@PathVariable  Integer zoneId){
         Optional<GrowZone> zone = growZoneRepository.findById(zoneId);
 
         return zone.get();
@@ -42,13 +43,13 @@ public class GrowZoneController {
 
     @PutMapping("/zone/{zoneId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void updateZone(@RequestBody GrowZone zone, @PathVariable Integer zoneId){
+    public void updateZone(@RequestBody @Valid GrowZone zone, @PathVariable Integer zoneId){
         growZoneRepository.save(zone);
     }
 
     @DeleteMapping("/zone/{zoneId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteZone(@PathVariable Integer zoneId){
+    public void deleteZone(@PathVariable @Valid Integer zoneId){
         growZoneRepository.deleteById(zoneId);
 
     }
