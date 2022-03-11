@@ -62,7 +62,7 @@ From repository `git clone <url>` to clone down respository to local machine
 `npm i` to install dependecies and packages to local machine
 
 From MySQL workbench, run seeds found at root to seed the zone data. 
-[Seed Data](https://github.com/JSheleg/garden-thyme/blob/troubleshootingMain2/grow_zone.sql)
+[Seed Data](https://github.com/JSheleg/garden-thyme/blob/main/grow_zone.sql)
 
 Start individual backend servers in the following order
 
