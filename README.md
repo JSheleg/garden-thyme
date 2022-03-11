@@ -26,7 +26,8 @@ A fullstack Java application that provides nurseries and home gardeners the oppo
 
 ## Visual Demonstration
 
-![Homepage]()
+![Homepage](https://github.com/JSheleg/garden-thyme/blob/feature/styles/gardenThyme1.png)
+![CreatePlant](https://github.com/JSheleg/garden-thyme/blob/feature/styles/gardenThyme2.png)
 
 ## User Story
 
@@ -95,11 +96,3 @@ The source code for the site is licensed under the MIT license and can be found 
     * [Katie Redford](https://github.com/katredford)
     * [Blaze Lim](https://github.com/blazelim)
     * [Jessica Sheleg](https://github.com/JSheleg)
-
-
-
-
-
-
-
-

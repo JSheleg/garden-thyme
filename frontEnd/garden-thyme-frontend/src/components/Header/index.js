@@ -5,19 +5,18 @@ const Header = () => {
 
 
   return (
-    <header className="bg-secondary mb-4 py-2 flex-row align-center">
-      <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <Link to="/">
-          Garden Thyme
-        </Link>
 
-        <nav className="text-center">
-                <>
-                <Link to="/createPlant">Create Plant</Link>
-                </>     
-        </nav>
-      </div>
-    </header>
+    <header>
+      <nav>
+        <h1>
+          <a href="/" style={{ textDecoration: 'none' }}>Garden Thyme</a>
+        </h1>
+        <button className="createPlant" >
+          <a href="/createPlant" style={{ textDecoration: 'none' }}>Create Plant</a>
+        </button>
+      </nav>
+      </header>
+
   );
 };
 
