@@ -10,6 +10,7 @@ A fullstack Java application that provides nurseries and home gardeners the oppo
   - [Project Description](#project-description)
   - [Table of Contents](#table-of-contents)
   - [Architectural Diagram](#architectrual-diagram)
+  - [Entity Relationship Diagram](#entity-relationship-diagram)
   - [Visual Demonstration](#visual-demonstration)
   - [User Story](#user-story)
   - [Acceptance Criteria](#acceptance-criteria)
@@ -22,7 +23,10 @@ A fullstack Java application that provides nurseries and home gardeners the oppo
 
 ## Architectural Diagram
 
-![Architectrual Diagram](https://github.com/JSheleg/garden-thyme/blob/main/GarenThyme.drawio.png)
+![Architectrual Diagram](https://github.com/JSheleg/garden-thyme/blob/main/assets/GarenThyme.drawio.png)
+
+## Entity Relationship Diagram
+![ERD Diagram](https://github.com/JSheleg/garden-thyme/blob/main/assets/ERDDiagram.drawio.png)
 
 ## Visual Demonstration
 
