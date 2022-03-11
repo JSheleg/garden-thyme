@@ -33,7 +33,7 @@ const Home = () => {
     return (
       <main>
           <div className='flex-row justify-space-between'>
-            This is the home page
+            {/* This is the home page */}
 
             {plants.length === 0 ? <div className="alert alert-warning">No Plants</div>
                 : (<div className="row row-cols-3">

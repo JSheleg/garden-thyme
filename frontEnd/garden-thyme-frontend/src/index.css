@@ -1,3 +1,9 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,7 +13,62 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+
+header a {
+    text-decoration: none;
+    color: #255957;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+header {
+    padding: 20px 35px;
+    padding-left: 0;
+    background-color: #8DE4FF;
+}
+
+header h1 {
+    font-weight: bold;
+    font-size: 36px;
+    background-color: #3bceac;
+    padding: 10px 10px 10px 100px;
+    border-radius: 0px 25px 25px 0px;
+    
+}
+
+header h1 :hover {
+    color: yellowgreen;
+}
+
+.createPlant {
+    margin: 0 5px;
+    font-size: 35px;
+    color: #8DE4FF;
+    background-color: #3BB273;
+    padding: 5px 5px 5px 5px ;
+    margin: 5px 5px 5px 500px;
+    border-radius: 25px 25px 25px 25px;
+    border: none;
+
+}
+
+.createPlant :hover {
+   
+  color: yellowgreen;
+}
+
+h4 {
+  padding: 5px 5px 5px 55px ;
+    
+}
+
+footer {
+   padding: 20px 35px;
+    padding-left: 0;
+    background-color: #3BB273;
+    color: yellowgreen;
 }

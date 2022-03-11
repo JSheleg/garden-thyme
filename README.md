@@ -20,8 +20,17 @@ A fullstack Java application that provides nurseries and home gardeners the oppo
   - [Questions?](#questions)
 
 ## Visual Demonstration
+<h3 align="center" width="100%">
+ <br>1. Create New User</br>
+<p align="center" width="100%">
+    <img src="./gardenThyme1.png" width="60%"/>
+</p>
 
-
+<h3 align="center" width="100%">
+ <br>1. Create New User</br>
+<p align="center" width="100%">
+    <img src="./gardenThyme2.png" width="60%"/>
+</p>
 ## User Story
 
     AS an avid gardener
